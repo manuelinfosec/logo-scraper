@@ -17,8 +17,20 @@ fn collect_websites() -> Vec<String> {
     websites
 }
 
+fn prepend_http(website: String) -> String {
+    if !website.starts_with("http") {
+        return format!("http://{}", website);
+    }
+    website
+}
+
 fn main() {
     // collec websites from STDIN
     let websites: Vec<String> = collect_websites();
-    println!("{websites:?}");
+    println!("Starting scraping...\n");
+
+    for domain in websites {
+        // add a schema to the domain
+        let website: String = prepend_http(domain);
+    }
 }
