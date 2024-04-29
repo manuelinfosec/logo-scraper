@@ -1,36 +1,27 @@
-use std::io::{BufRead, StdinLock};
-
-fn collect_websites() -> Vec<String> {
-    let mut websites: Vec<String> = vec![];
-    // lock STDIN for synchronous use
-    let reader: StdinLock = std::io::stdin().lock();
-
-    for line in reader.lines() {
-        let line: String = line.unwrap();
-        // check for an empty line
-        if line.trim().is_empty() {
-            break;
-        }
-        websites.push(line.trim().to_owned());
-    }
-
-    websites
-}
-
-fn prepend_http(website: String) -> String {
-    if !website.starts_with("http") {
-        return format!("http://{}", website);
-    }
-    website
-}
+mod scrape;
+mod utils;
 
 fn main() {
     // collec websites from STDIN
-    let websites: Vec<String> = collect_websites();
+    let websites: Vec<String> = utils::collect_websites();
     println!("Starting scraping...\n");
 
     for domain in websites {
         // add a schema to the domain
-        let website: String = prepend_http(domain);
+        let website: String = utils::prepend_http(domain);
+
+        // fetch page HTML page source
+        let page_source: String = match utils::fetch_page_source(website) {
+            Ok(text) => text,
+            Err(_) => {
+                // TODO: Query Public Logo API
+                println!("An error occurred while fetching page source.");
+
+                // skip to next iteration
+                continue;
+            }
+        };
+
+        println!("{page_source}");
     }
 }
