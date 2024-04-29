@@ -25,7 +25,7 @@ pub fn collect_websites() -> Vec<String> {
 
 pub fn prepend_http(website: String) -> String {
     if !website.starts_with("http") {
-        return format!("http://{}", website);
+        return format!("https://{website}");
     }
     website
 }

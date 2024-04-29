@@ -23,7 +23,7 @@ fn main() {
         };
 
         scrape::parse_logo(page_source);
-
+  
         // println!("{page_source}");
     }
 }
