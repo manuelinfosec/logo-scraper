@@ -18,11 +18,13 @@ pub fn parse_logo(source: String) -> Result<String, regex::Error> {
             let class_attribute: &str = element.value().attr("class").unwrap_or("");
             // println!("{class_attribute}");
             if pattern.is_match(class_attribute) {
-                Some(element.text().collect::<String>())
+                println!("{:?}", element.value());
+                element.value().attr("src")
             } else {
                 None
             }
-        });
+        })
+        .nth(0);
 
     // println!("{logo_url:?}");
 

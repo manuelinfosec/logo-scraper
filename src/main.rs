@@ -21,9 +21,9 @@ fn main() {
                 continue;
             }
         };
-        
-        // scrape::parse_logo(page_source);
 
-        println!("{page_source}");
+        scrape::parse_logo(page_source);
+
+        // println!("{page_source}");
     }
 }

@@ -34,7 +34,7 @@ pub fn fetch_page_source(website: String) -> Result<String, Error> {
     let client: Client = Client::new();
     let response: Response = client.get(website)
     .header(reqwest::header::USER_AGENT, 
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36")
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36")
         .send()?;
     response.text()
 }
