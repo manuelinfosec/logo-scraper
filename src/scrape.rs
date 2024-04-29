@@ -13,7 +13,6 @@ pub fn parse_logo(source: String) -> Result<String, regex::Error> {
     // 1. Check for the first class that has the substring "logo"
     let class_selector: Selector = Selector::parse("[class]").unwrap();
 
-    // 1. Check for the first class that has the substring "logo"
     logo_url = match document.select(&class_selector).find(|element| {
         let class_attribute: &str = element.value().attr("class").unwrap_or("");
         pattern.is_match(class_attribute)
@@ -22,6 +21,7 @@ pub fn parse_logo(source: String) -> Result<String, regex::Error> {
         _ => None,
     };
 
+    // 2. Check the first value that has the string "logo" in src.
     if logo_url.is_none() {
         let value_selector: Selector = Selector::parse("img[src]").unwrap();
 
