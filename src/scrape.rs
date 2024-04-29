@@ -26,7 +26,7 @@ pub fn parse_logo(source: String) -> Result<String, regex::Error> {
         })
         .nth(0);
 
-    // println!("{logo_url:?}");
+    println!("{logo_url:?}");
 
     Ok("Logo".to_string())
 }
