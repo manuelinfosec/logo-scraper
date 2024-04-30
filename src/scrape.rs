@@ -47,19 +47,19 @@ pub fn parse_logo(source: String) -> &'static str {
         };
     };
 
-    // 3. Collect the meta property of "og:image"
-    if logo_url.is_none() {
-        // `og:image`` is part of the Open Graph protocol
-        let og_image_selector: Selector = Selector::parse("meta[property='og:image']").unwrap();
+    // // 3. Collect the meta property of "og:image"
+    // if logo_url.is_none() {
+    //     // `og:image`` is part of the Open Graph protocol
+    //     let og_image_selector: Selector = Selector::parse("meta[property='og:image']").unwrap();
 
-        // query document with selector, collect first element and assign `content` attribute
-        logo_url = document
-            .select(&og_image_selector)
-            // returns an Option
-            .next()
-            // returns None if provided with None
-            .and_then(|element: ElementRef<'_>| element.value().attr("content"));
-    };
+    //     // query document with selector, collect first element and assign `content` attribute
+    //     logo_url = document
+    //         .select(&og_image_selector)
+    //         // returns an Option
+    //         .next()
+    //         // returns None if provided with None
+    //         .and_then(|element: ElementRef<'_>| element.value().attr("content"));
+    // }
 
     println!("{logo_url:?}");
 
