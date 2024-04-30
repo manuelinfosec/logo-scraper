@@ -22,8 +22,8 @@ fn main() {
             }
         };
 
-        scrape::parse_logo(page_source);
-  
+        let logo_url: Option<&str> = scrape::parse_logo(page_source);
+
         // println!("{page_source}");
     }
 }
